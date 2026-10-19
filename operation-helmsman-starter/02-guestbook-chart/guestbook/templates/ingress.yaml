@@ -1,0 +1,6 @@
+{{- /*
+TODO (M2.5): render an Ingress for the frontend ONLY when .Values.ingress.enabled is true.
+  - ingressClassName from .Values.ingress.className (skip the field when empty - try `with`)
+  - host from .Values.ingress.host, path "/", pathType Prefix
+  - backend: service "frontend", port .Values.frontend.service.port
+*/}}

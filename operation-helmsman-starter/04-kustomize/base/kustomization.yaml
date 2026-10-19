@@ -1,0 +1,17 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - deployment.yaml
+  - service.yaml
+
+labels:
+  - pairs:
+      app.kubernetes.io/name: podinfo
+      app.kubernetes.io/part-of: operation-helmsman
+
+configMapGenerator:
+  - name: podinfo-ui
+    literals:
+      - PODINFO_UI_MESSAGE=Hello from the base
+      - PODINFO_UI_COLOR=#34577c

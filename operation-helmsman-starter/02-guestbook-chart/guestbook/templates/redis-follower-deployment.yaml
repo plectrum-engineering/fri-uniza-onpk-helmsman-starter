@@ -1,0 +1,35 @@
+# TODO (M2.1): template this file.
+#   - replicas from .Values.redis.follower.replicas
+#   - image / pullPolicy / resources from .Values.redis.follower
+#   - common labels
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-follower
+  labels:
+    app: redis
+    role: follower
+    tier: backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: redis
+      role: follower
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: redis
+        role: follower
+        tier: backend
+    spec:
+      containers:
+        - name: follower
+          image: us-docker.pkg.dev/google-samples/containers/gke/gb-redis-follower:v2
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
+          ports:
+            - containerPort: 6379

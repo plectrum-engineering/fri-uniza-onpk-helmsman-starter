@@ -1,0 +1,6 @@
+# HOLE 1 - Rename & relocate: every object lives in namespace golf, names end with -v2, and carry the annotation owner: team-blue
+# Goal:  ../check.sh 1   prints SOLVED.  Fewer non-comment lines = better score.
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../base

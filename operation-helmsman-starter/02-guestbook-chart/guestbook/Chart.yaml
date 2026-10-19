@@ -1,0 +1,12 @@
+apiVersion: v2
+name: guestbook
+description: PHP guestbook with a Redis leader/follower backend (ONPK multi-tier app, now as a Helm chart)
+type: application
+version: 0.1.0
+appVersion: "v5"
+keywords:
+  - guestbook
+  - redis
+  - onpk
+maintainers:
+  - name: ONPK student

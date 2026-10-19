@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    tier: web
+  name: golf-backend
+spec:
+  ports:
+  - name: http
+    port: 80
+    targetPort: http
+  selector:
+    app: web
+    tier: web
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    tier: web
+  name: golf-web
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: web
+      tier: web
+  template:
+    metadata:
+      labels:
+        app: web
+        tier: web
+    spec:
+      containers:
+      - args:
+        - sh
+        - -c
+        - tail -F /dev/null
+        image: busybox:1.37
+        name: log-shipper
+      - env:
+        - name: BACKEND_HOST
+          value: golf-backend
+        image: nginx:1.27
+        name: nginx
+        ports:
+        - containerPort: 80
+          name: http

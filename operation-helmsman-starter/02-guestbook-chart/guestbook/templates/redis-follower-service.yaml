@@ -1,0 +1,17 @@
+# TODO (M2.1): add the common labels. Do NOT change the name - why? (see the NOTE)
+# NOTE: the name must stay "redis-follower" - the PHP frontend looks it up by this DNS name.
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-follower
+  labels:
+    app: redis
+    role: follower
+    tier: backend
+spec:
+  ports:
+    - port: 6379
+  selector:
+    app: redis
+    role: follower
+    tier: backend

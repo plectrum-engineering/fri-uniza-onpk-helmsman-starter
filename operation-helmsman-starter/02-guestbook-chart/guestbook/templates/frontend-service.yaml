@@ -1,0 +1,17 @@
+# TODO (M2.1): template this file.
+#   - type and port from .Values.frontend.service
+#   - common labels
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+  labels:
+    app: guestbook
+    tier: frontend
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+  selector:
+    app: guestbook
+    tier: frontend

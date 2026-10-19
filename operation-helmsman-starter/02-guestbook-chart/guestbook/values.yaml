@@ -1,0 +1,49 @@
+# -- Environment name, rendered into labels and NOTES (dev, staging, prod ...)
+environment: dev
+
+frontend:
+  replicas: 3
+  image:
+    repository: us-docker.pkg.dev/google-samples/containers/gke/gb-frontend
+    tag: v5
+    digest: ""
+    pullPolicy: IfNotPresent
+  service:
+    # ClusterIP | NodePort | LoadBalancer
+    type: ClusterIP
+    port: 80
+  resources:
+    requests:
+      cpu: 100m
+      memory: 100Mi
+
+redis:
+  leader:
+    image:
+      repository: registry.k8s.io/redis
+      tag: ""
+      digest: sha256:cb111d1bd870a6a471385a4a69ad17469d326e9dd91e0e455350cacf36e1b3ee
+      pullPolicy: IfNotPresent
+    resources:
+      requests:
+        cpu: 100m
+        memory: 100Mi
+  follower:
+    replicas: 2
+    image:
+      repository: us-docker.pkg.dev/google-samples/containers/gke/gb-redis-follower
+      tag: v2
+      digest: ""
+      pullPolicy: IfNotPresent
+    resources:
+      requests:
+        cpu: 100m
+        memory: 100Mi
+
+ingress:
+  enabled: false
+  className: nginx
+  host: guestbook.local
+
+tests:
+  image: busybox:1.37

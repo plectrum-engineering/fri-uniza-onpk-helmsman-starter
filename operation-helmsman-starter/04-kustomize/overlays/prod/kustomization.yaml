@@ -1,0 +1,13 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+# MISSION 4.3 - PROD
+# TODO: namespace "podinfo-prod", prefix "prod-", label env=prod, 3 replicas
+# TODO: UI message "Production - handle with care", color #c62828
+# TODO: strategic-merge patch (resources-patch.yaml):
+#         requests cpu 200m / memory 64Mi, limits memory 256Mi
+# TODO: JSON6902 patch: change the container command item "--level=info" to "--level=warn"
+#         (hint: path /spec/template/spec/containers/0/command/<index>)
+# TODO: add a PodDisruptionBudget (minAvailable: 2) - pdb.yaml
+resources:
+  - ../../base

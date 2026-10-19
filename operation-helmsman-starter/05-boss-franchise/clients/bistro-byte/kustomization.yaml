@@ -1,0 +1,9 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+# BOSS LEVEL - client "bistro-byte"
+# Read the client brief on the challenge slides, then make this overlay deliver it.
+# Build:  kubectl kustomize --enable-helm clients/bistro-byte
+# Check:  ../verify.sh bistro-byte
+resources:
+  - ../../base

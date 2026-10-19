@@ -1,0 +1,6 @@
+# HOLE 3 - The surgeon: prefix golf-, label tier=web (selectors too!), 4 replicas, debug port gone, a sidecar, BACKEND_HOST = the real Service name
+# Goal:  ../check.sh 3   prints SOLVED.  Fewer non-comment lines = better score.
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../base

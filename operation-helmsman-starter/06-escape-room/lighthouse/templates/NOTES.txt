@@ -1,0 +1,3 @@
+The lighthouse is lit.
+  kubectl -n {{ .Release.Namespace }} port-forward svc/{{ .Release.Name }}-lighthouse 9898:{{ .Values.service.port }}
+Open http://localhost:9898 and read the message. Then run: helm test {{ .Release.Name }} -n {{ .Release.Namespace }}

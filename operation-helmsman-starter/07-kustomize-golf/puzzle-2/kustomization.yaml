@@ -1,0 +1,6 @@
+# HOLE 2 - Config & secrets: new image tag, a hashed ConfigMap from app.properties mounted at /etc/web, a hashed Secret exposed via envFrom
+# Goal:  ../check.sh 2   prints SOLVED.  Fewer non-comment lines = better score.
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../base

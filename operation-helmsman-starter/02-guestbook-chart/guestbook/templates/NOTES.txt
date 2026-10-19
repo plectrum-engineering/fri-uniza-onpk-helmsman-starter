@@ -1,0 +1,8 @@
+{{- /*
+TODO (M2.4): write helpful NOTES. Ideas:
+  - release name, namespace and environment
+  - number of frontend / follower replicas
+  - how to open the app: port-forward for ClusterIP, "minikube service" for NodePort,
+    the host name when ingress is enabled  (if / else if / else)
+*/}}
+Guestbook "{{ .Release.Name }}" installed. TODO: make me more useful.

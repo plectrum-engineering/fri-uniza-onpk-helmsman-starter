@@ -1,0 +1,23 @@
+replicaCount: 2
+
+image:
+  repository: ghcr.io/stefanprodan/podinfo
+ tag: "6.15.0"
+
+service:
+  type: ClusterIP
+  port: 9898
+
+ui:
+  color: "#0b3d91"
+  # the secret is base64-encoded so nobody can just grep for it ;)
+  secret: QU5DSE9S
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 32Mi
+  limits:
+    memory: 128Mi
+
+maxSurge: 1

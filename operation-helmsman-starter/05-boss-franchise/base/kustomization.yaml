@@ -1,0 +1,21 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+# Helm renders the vendor chart, Kustomize does the last mile.
+# The chart is vendored in ./charts/podinfo (offline-friendly).
+# Online variant: delete ./charts and uncomment `repo` + `version`.
+helmCharts:
+  - name: podinfo
+    releaseName: storefront
+    kubeVersion: "1.34.0"
+    # repo: https://stefanprodan.github.io/podinfo
+    # version: 6.15.0
+    valuesInline:
+      replicaCount: 2
+      ui:
+        color: "#34577c"
+        message: "Storefront"
+      resources:
+        requests:
+          cpu: 50m
+          memory: 32Mi

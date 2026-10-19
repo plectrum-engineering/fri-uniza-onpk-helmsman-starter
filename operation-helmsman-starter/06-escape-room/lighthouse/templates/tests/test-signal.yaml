@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: {{ .Release.Name }}-test-signal
+  annotations:
+    "helm.sh/hook": test
+    "helm.sh/hook-delete-policy": before-hook-creation
+spec:
+  restartPolicy: Never
+  containers:
+    - name: probe
+      image: busybox:1.37
+      command: ["sh", "-c", "wget -qO- http://{{ .Release.Name }}-lighthouse:{{ .Values.service.port }}/api/info | grep -q 'code word'"]

@@ -1,0 +1,18 @@
+# TODO (M2.1): add the common labels. Do NOT change the name - why? (see the NOTE)
+# NOTE: the name must stay "redis-leader" - the PHP frontend looks it up by this DNS name.
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-leader
+  labels:
+    app: redis
+    role: leader
+    tier: backend
+spec:
+  ports:
+    - port: 6379
+      targetPort: 6379
+  selector:
+    app: redis
+    role: leader
+    tier: backend

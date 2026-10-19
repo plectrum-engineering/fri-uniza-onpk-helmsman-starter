@@ -1,0 +1,7 @@
+{{- /*
+TODO (M2.6): write a `helm test` hook.
+  A Pod (restartPolicy: Never) annotated with  "helm.sh/hook": test
+  image .Values.tests.image, that runs:
+     wget -qO- http://frontend:<port> | grep -i guestbook
+  Bonus: add "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
+*/}}

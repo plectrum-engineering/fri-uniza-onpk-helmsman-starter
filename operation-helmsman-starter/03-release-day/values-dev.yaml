@@ -1,0 +1,2 @@
+# MISSION 3.1 - dev environment overrides for the guestbook chart
+# TODO: environment dev, 1 frontend replica, NodePort service, 1 redis follower

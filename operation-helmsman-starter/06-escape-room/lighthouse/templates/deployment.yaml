@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-lighthouse
+  labels:
+    {{- include "lighthouse.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  strategy:
+    rollingUpdate:
+      maxSurge: {{ .Values.maxSurge }}
+  selector:
+    matchLabels:
+      {{- include "lighthouse.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "lighthouse.labels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: podinfo
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.port }}
+          env:
+            - name: PODINFO_UI_COLOR
+              value: {{ .Values.ui.color | quote }}
+            - name: PODINFO_UI_MESSAGE
+              value: {{ printf "The code word is %s" (.Values.ui.secret | b64enc) | quote }}
+            - name: PODINFO_PORT
+              value: {{ .Values.service.port }}
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: http
+          resources:
+            {{- toYaml .Values.resources | indent 12 }}

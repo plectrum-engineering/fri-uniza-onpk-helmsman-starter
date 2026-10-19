@@ -1,0 +1,8 @@
+apiVersion: kustomize.config.k8s.io/v1alpha1
+kind: Component
+
+# MISSION 4.5 - MAINTENANCE MODE (reusable component)
+# TODO: merge into configMap "podinfo-ui":
+#         PODINFO_UI_MESSAGE=Down for maintenance - back soon
+#         PODINFO_UI_COLOR=#616161
+# Switch prod into maintenance by adding this component - watch the pods roll. Why do they restart?

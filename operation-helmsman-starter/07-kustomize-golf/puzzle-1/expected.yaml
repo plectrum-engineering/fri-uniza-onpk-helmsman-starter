@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    owner: team-blue
+  name: backend-v2
+  namespace: golf
+spec:
+  ports:
+  - name: http
+    port: 80
+    targetPort: http
+  selector:
+    app: web
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    owner: team-blue
+  name: web-v2
+  namespace: golf
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      annotations:
+        owner: team-blue
+      labels:
+        app: web
+    spec:
+      containers:
+      - env:
+        - name: BACKEND_HOST
+          value: CHANGE_ME
+        image: nginx:1.27
+        name: nginx
+        ports:
+        - containerPort: 80
+          name: http
+        - containerPort: 8080
+          name: debug

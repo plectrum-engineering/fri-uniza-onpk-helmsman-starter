@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  labels:
+    app: guestbook
+    tier: frontend
+    {{- include "guestbook.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.frontend.replicas }}
+  selector:
+    matchLabels:
+      app: guestbook
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        app: guestbook
+        tier: frontend
+        {{- include "guestbook.labels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: php-redis
+          image: {{ include "guestbook.image" .Values.frontend.image | quote }}
+          imagePullPolicy: {{ .Values.frontend.image.pullPolicy }}
+          env:
+            - name: GET_HOSTS_FROM
+              value: "dns"
+          resources:
+            {{- toYaml .Values.frontend.resources | nindent 12 }}
+          ports:
+            - containerPort: 80
