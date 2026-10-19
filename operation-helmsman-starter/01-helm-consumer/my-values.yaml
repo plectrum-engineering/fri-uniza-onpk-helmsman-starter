@@ -1,8 +1,0 @@
-# MISSION 1 - Paint the pod
-# Fill in the values below, then:
-#   helm install paint podinfo/podinfo -n mission1 --create-namespace -f my-values.yaml
-# Find the available keys with:  helm show values podinfo/podinfo
-replicaCount: 1
-ui:
-  message: ""   # TODO: your team name
-  color: ""     # TODO: your team color, e.g. "#7b2ff7"
